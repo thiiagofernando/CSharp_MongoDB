@@ -6,16 +6,71 @@ namespace CSharp_MongoDB
 {
     class Program
     {
+        //Lista de Cliente para ser inserida no banco
+        static List<Cliente> GerarClientes()
+        {
+            var clientes = new List<Cliente>();
+            clientes.Add(new Cliente
+            {
+                Nome = "João da Silva",
+                Email = "joao@silva.com",
+                Telefone = "9999-8888",
+                Endereco = new Endereco
+                {
+                    Logradouro = "Rua Fulano de Tal",
+                    Numero = 123,
+                    Bairro = "Bairro Sem Nome",
+                    Cidade = "Rio de Janeiro",
+                    UF = "RJ"
+                }
+            });
+            clientes.Add(new Cliente
+            {
+                Nome = "Pedro Rodrigues",
+                Email = "joel@rodrigues.com",
+                Telefone = "8888-7777",
+                Endereco = new Endereco
+                {
+                    Logradouro = "Avenida Doutor Fulano",
+                    Numero = 789,
+                    Bairro = "Bairro Qualquer",
+                    Cidade = "Rio de Janeiro",
+                    UF = "RJ"
+                }
+            });
+            clientes.Add(new Cliente
+            {
+                Nome = "Maria Aparecida",
+                Email = "maria@aparecida.com",
+                Telefone = "8989-7676",
+                Endereco = new Endereco
+                {
+                    Logradouro = "Rua Sem Nome",
+                    Numero = 456,
+                    Bairro = "Bairro da Aparecida",
+                    Cidade = "São Paulo",
+                    UF = "SP"
+                }
+            });
+            return clientes;
+        }
         static void Main(string[] args)
         {
 
             try
             {
+                //conexao com o servidor
                 var client = new MongoClient("mongodb://localhost:27017");
-                var database = client.GetDatabase("loja");
-                var colecao = database.GetCollection<Usuarios>("usuarios");
 
-                #region Adionar Registro
+                //Seleciono Qual Banco vou usar
+                var database = client.GetDatabase("loja");
+                
+                //Selecion Qual Tabela vou Utilizar
+                //var colecao = database.GetCollection<Usuarios>("usuarios");
+                var colecao = database.GetCollection<Cliente>("clientes");
+
+
+                #region Adicionar Usuario
                 //var usuario = new List<Usuarios>
                 //{
                 //    new Usuarios
@@ -37,7 +92,7 @@ namespace CSharp_MongoDB
                 //Console.WriteLine("Dados Inseridos com Sucesso.");
                 #endregion
 
-                #region Atualizar Registro
+                #region Atualizar Usuario
                 //var filtro = Builders<Usuarios>.Filter.Eq(u => u.Login, "thiago2");
                 //var alteracao = Builders<Usuarios>.Update.Set(u => u.Senha, "qwer@1234");
                 //colecao.UpdateOne(filtro, alteracao);
@@ -51,25 +106,39 @@ namespace CSharp_MongoDB
 
                 #endregion
 
-                #region Excluir Registro
+                #region Excluir Usuarios
                 //var filtro = Builders<Usuarios>.Filter.Eq(u => u.Login, "thiago2");
                 //var resultado = colecao.DeleteOne(filtro);
                 //Console.WriteLine($"{resultado.DeletedCount} documento(s) excluido(s).");
                 #endregion
 
-                #region Lista Registro
+                #region Lista Usuario
                 //Listar Todos Resgistros
                 //var filtro = Builders<Usuarios>.Filter.Empty;
-                
+
                 //Listar Somente os registros com Status Ativo
                 //var filtro = Builders<Usuarios>.Filter.Where(u => u.Ativo==true);
-                
-                //Retorna um Registro Apenas
-                var filtro = Builders<Usuarios>.Filter.Where(u => u.Login == "thiago2");
 
-                var usuarios = colecao.Find(filtro).ToList();
-                usuarios.ForEach(u => Console.WriteLine(u));
-                Console.WriteLine($"Total de Registros {usuarios.Count}");
+                //Retorna um Registro Apenas
+                //var filtro = Builders<Usuarios>.Filter.Where(u => u.Login == "thiago2");
+
+                //var usuarios = colecao.Find(filtro).ToList();
+                //usuarios.ForEach(u => Console.WriteLine(u));
+                //Console.WriteLine($"Total de Registros {usuarios.Count}");
+                #endregion
+
+                #region Inserindo Cliente
+                //var clientes = GerarClientes();
+                //colecao.InsertMany(clientes);
+                //Console.WriteLine("Clientes Cadastrados com Sucesso!!");
+                //Console.WriteLine($"Total: {clientes.Count}");
+                #endregion
+
+                #region Consultando Cliente
+                var filtro = Builders<Cliente>.Filter.Eq(c => c.Endereco.UF, "RJ");
+                var clientes = colecao.Find(filtro).ToList();
+                clientes.ForEach(c => Console.WriteLine(c));
+                Console.WriteLine($"Total: {clientes.Count}");
                 #endregion
 
                 Console.ReadKey();
