@@ -1,0 +1,17 @@
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\bin\Debug\CSharp_MongoDB.exe.config
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\bin\Debug\CSharp_MongoDB.exe
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\bin\Debug\CSharp_MongoDB.pdb
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\bin\Debug\DnsClient.dll
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\bin\Debug\MongoDB.Bson.dll
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\bin\Debug\MongoDB.Driver.Core.dll
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\bin\Debug\MongoDB.Driver.dll
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\bin\Debug\System.Buffers.dll
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\bin\Debug\DnsClient.xml
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\bin\Debug\MongoDB.Bson.xml
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\bin\Debug\MongoDB.Driver.xml
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\bin\Debug\MongoDB.Driver.Core.xml
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\obj\Debug\CSharp_MongoDB.csprojResolveAssemblyReference.cache
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\obj\Debug\CSharp_MongoDB.csproj.CoreCompileInputs.cache
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\obj\Debug\CSharp_MongoDB.csproj.CopyComplete
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\obj\Debug\CSharp_MongoDB.exe
+D:\CSharp_MongoDB\CSharp_MongoDB\CSharp_MongoDB\obj\Debug\CSharp_MongoDB.pdb
