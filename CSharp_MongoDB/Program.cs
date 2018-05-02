@@ -59,8 +59,20 @@ namespace CSharp_MongoDB
 
             try
             {
-                //conexao com o servidor
-                var client = new MongoClient("mongodb://localhost:27017");
+                //string de conexao com o servidor
+                var settings = new MongoClientSettings
+                {
+                    ServerSelectionTimeout = new TimeSpan(0, 0, 5),
+                    Server = new MongoServerAddress("localhost", 27017),
+                    Credentials = new[]
+                    {
+                        MongoCredential.CreateCredential("loja","thiago","qwer@1234")
+                    }
+                };
+                //Abrindo conexao com o servidor
+                var client = new MongoClient(settings);
+                Console.WriteLine("Conectado com Sucesso no servidor");
+                Console.WriteLine();
 
                 //Seleciono Qual Banco vou usar
                 var database = client.GetDatabase("loja");
@@ -128,21 +140,26 @@ namespace CSharp_MongoDB
                 #endregion
 
                 #region Inserindo Cliente
-                //var clientes = GerarClientes();
-                //colecao.InsertMany(clientes);
-                //Console.WriteLine("Clientes Cadastrados com Sucesso!!");
-                //Console.WriteLine($"Total: {clientes.Count}");
+                var clientes = GerarClientes();
+                colecao.InsertMany(clientes);
+                Console.WriteLine("Clientes Cadastrados com Sucesso!!");
+                Console.WriteLine($"Total: {clientes.Count}");
                 #endregion
 
                 #region Consultando Cliente
-                var filtro = Builders<Cliente>.Filter.Eq(c => c.Endereco.UF, "RJ");
-                var clientes = colecao.Find(filtro).ToList();
-                clientes.ForEach(c => Console.WriteLine(c));
-                Console.WriteLine($"Total: {clientes.Count}");
+                //var filtro = Builders<Cliente>.Filter.Eq(c => c.Endereco.UF, "RJ");
+                //var clientes = colecao.Find(filtro).ToList();
+                //clientes.ForEach(c => Console.WriteLine(c));
+                //Console.WriteLine($"Total: {clientes.Count}");
                 #endregion
 
                 Console.ReadKey();
 
+            }
+            catch (TimeoutException e)
+            {
+                Console.WriteLine($"Erro Não foi possivel realizar conexão com o servidor : {e.Message}");
+                Console.ReadKey();
             }
             catch (Exception e)
             {
